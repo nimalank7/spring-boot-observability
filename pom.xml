@@ -9,7 +9,7 @@
 	<name>spring-boot-micrometer</name>
 	<description>Application monitoring using Prometheus and Grafana</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>24</java.version>
 	</properties>
 
 	<dependencies>
@@ -75,8 +75,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.14.0</version>
 				<configuration>
-					<source>21</source>
-					<target>21</target>
+					<source>24</source>
+					<target>24</target>
 				</configuration>
 			</plugin>
 		</plugins>
