@@ -11,3 +11,6 @@ Micrometer is a facade that is used to integrate Spring Boot Actuator metrics wi
 
 ## Prometheus
 - Prometheus exposes its own metrics on `/metrics:9090` with job name as `prometheus`
+
+## Tracing:
+- Run `docker run -d -p 9411:9411 openzipkin/zipkin` and navigate to `localhost:9411` and see all traces
