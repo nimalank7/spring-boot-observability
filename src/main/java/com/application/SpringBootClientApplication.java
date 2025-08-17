@@ -1,12 +1,12 @@
-package com.application.micrometer.api;
+package com.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootMicrometerApplication {
+public class SpringBootClientApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootMicrometerApplication.class, args);
+		SpringApplication.run(SpringBootClientApplication.class, args);
 	}
 }

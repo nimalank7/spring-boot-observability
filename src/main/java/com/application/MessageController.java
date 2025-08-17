@@ -1,4 +1,4 @@
-package com.application.micrometer.api;
+package com.application;
 
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;

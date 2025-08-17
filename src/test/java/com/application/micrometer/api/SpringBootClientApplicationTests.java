@@ -7,7 +7,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 @SpringBootTest
-public class SpringBootMicrometerApplicationTests {
+public class SpringBootClientApplicationTests {
 
 	@Test
 	public void stringIsHello() {
