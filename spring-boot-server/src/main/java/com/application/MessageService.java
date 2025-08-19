@@ -10,9 +10,10 @@ public class MessageService {
 
     private static final Log logger = LogFactory.getLog(MessageController.class);
 
-    @Observed(contextualName = "getMessage")
-    public String getMessage() {
-        logger.info("Inside MessageService.getMessage()");
-        return "Hello from Message Controller!";
+    @Observed(contextualName = "retrieveMessage")
+    public String retrieveMessage() {
+        logger.info("Inside MessageService.retrieveMessage()");
+
+        return "Hello from spring-boot-server!";
     }
 }

@@ -1,0 +1,43 @@
+networks:
+  telemetry:
+    name: telemetry
+    driver: bridge
+services:
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin:3.5
+    ports:
+      - "9411:9411"
+    networks:
+      - telemetry
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:v3.3.0
+    ports:
+      - "9091:9090"
+    command: --config.file=/etc/prometheus/prometheus.yaml
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yaml
+    networks:
+      - telemetry
+  spring-boot-client:
+    build:
+      context: ./spring-boot-client
+    container_name: spring-boot-client
+    image: spring-boot-client
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_SERVER_URI: http://spring-boot-server:8081
+    networks:
+      - telemetry
+  spring-boot-server:
+    build:
+      context: ./spring-boot-server
+    container_name: spring-boot-server
+    image: spring-boot-server
+    ports:
+      - "8081:8081"
+    networks:
+      - telemetry
+
