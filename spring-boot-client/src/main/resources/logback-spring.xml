@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <!--  Access the application.properties file to retrieve spring.application.name and make it available under appName -->
     <springProperty scope="context" name="appName" source="spring.application.name"/>
 
     <appender name="LOKI" class="com.github.loki4j.logback.Loki4jAppender">

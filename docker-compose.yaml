@@ -58,6 +58,7 @@ services:
       - telemetry
     healthcheck:
       # Curl not available in loki container
+      # Ingester takes about 15s to be ready
       test: wget --no-verbose -q -O - http://localhost:3100/ready | grep -q '^ready' || exit 1
       timeout: 10s
       retries: 3
@@ -76,4 +77,3 @@ services:
     depends_on:
       loki:
         condition: service_healthy
-
