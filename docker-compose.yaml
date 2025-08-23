@@ -20,6 +20,9 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yaml
     networks:
       - telemetry
+    depends_on:
+      loki:
+        condition: service_healthy
   spring-boot-client:
     build:
       context: ./spring-boot-client
@@ -31,6 +34,9 @@ services:
       SPRING_SERVER_URI: http://spring-boot-server:8081
     networks:
       - telemetry
+    depends_on:
+      loki:
+        condition: service_healthy
   spring-boot-server:
     build:
       context: ./spring-boot-server
@@ -40,4 +46,34 @@ services:
       - "8081:8081"
     networks:
       - telemetry
+    depends_on:
+      loki:
+        condition: service_healthy
+  loki:
+    container_name: loki
+    image: grafana/loki:3.5.3
+    ports:
+      - "3100:3100"
+    networks:
+      - telemetry
+    healthcheck:
+      # Curl not available in loki container
+      test: wget --no-verbose -q -O - http://localhost:3100/ready | grep -q '^ready' || exit 1
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:10.4.10
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+    ports:
+      - "3000:3000"
+    networks:
+      - telemetry
+    depends_on:
+      loki:
+        condition: service_healthy
 
