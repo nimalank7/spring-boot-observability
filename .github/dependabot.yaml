@@ -1,7 +1,15 @@
 version: 2
 updates:
   - package-ecosystem: maven
-    directory: "/"
+    directories:
+      - "spring-boot-client"
+      - "spring-boot-server"
     schedule:
       interval: daily
-    open-pull-requests-limit: 10
+  - package-ecosystem: "docker"
+    directories:
+      - "/"
+      - "spring-boot-server"
+      - "spring-boot-client"
+    schedule:
+      interval: daily
