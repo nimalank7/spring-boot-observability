@@ -1,4 +1,4 @@
-FROM maven:3.9.11-eclipse-temurin-24@sha256:db74cfbb321f7c1c0ffa735d188dc4215a279e8f677fd62aed4a955606face85 AS builder
+FROM maven:3-eclipse-temurin-24@sha256:2a2e7f8a91a0598d64f75ea2c470dad84a3fb7bc1895ea4d1f3504c2554f8fc9 AS builder
 
 # Caches the dependencies as pom.xml rarely changes
 COPY pom.xml .
@@ -7,7 +7,7 @@ RUN ["mvn", "dependency:copy-dependencies"]
 COPY src ./src
 RUN ["mvn", "clean", "package"]
 
-FROM maven:3.9.11-eclipse-temurin-24@sha256:db74cfbb321f7c1c0ffa735d188dc4215a279e8f677fd62aed4a955606face85
+FROM maven:3-eclipse-temurin-24@sha256:2a2e7f8a91a0598d64f75ea2c470dad84a3fb7bc1895ea4d1f3504c2554f8fc9
 
 COPY --from=builder /target/*.jar app.jar
 
